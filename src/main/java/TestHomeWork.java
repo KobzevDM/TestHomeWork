@@ -24,6 +24,7 @@ public class TestHomeWork {
 
         // TODO: Массив правильных ответов
         int[] correctAnswers = new int[]{3, 2, 1};
+        int number = -1;
 
         // Примечание - можете придумать как хранить всю информацию в одном массиве
 
@@ -36,21 +37,29 @@ public class TestHomeWork {
             for (int j = 0; j < answerOptions[i].length; j++) {
                 System.out.println(answerOptions[i][j]);
             }
-            //TODO: Считываем с консоли ответ пользователя
-            System.out.println("Какой вариант верный?");
-            int number = scanner.nextInt();
+            //TODO: Считываем с консоли ответ пользователя 
+            // предусмотреть выход из программы по вводу пользователем "n" было бы интересно
+            do {
+                System.out.println("Какой вариант верный?");
+                number = scanner.nextInt();
+                if (number > answerOptions[i].length) {
+                    System.out.println("Вы ввели ответ выше диапазона возможных ответов.");
+                } else {
+                    break;
+                }
+            } while (true);
+
             //TODO: Проверяем ответ и выводим результат
             // а также увеличиваем счетчики правильных и неправильных ответов
             if (number == correctAnswers[i]) {
                 System.out.println("правильно");
-            } else System.out.println("неправильно");
-
-            if (number == correctAnswers[i]) {
                 correctCount += 1;
-            } else wrongCount += 1;
+            } else {
+                System.out.println("неправильно");
+                wrongCount += 1;
+            }
+            System.out.println("Результат: правильно " + correctCount + ", неправильно " + wrongCount);
 
         }
-        //Выводим общий результат
-        System.out.println("Результат: правильно " + correctCount + ", неправильно " + wrongCount);
     }
 }
