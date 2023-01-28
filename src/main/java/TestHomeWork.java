@@ -39,16 +39,21 @@ public class TestHomeWork {
             }
             //TODO: Считываем с консоли ответ пользователя 
             // предусмотреть выход из программы по вводу пользователем "n" было бы интересно
-            do {
-                System.out.println("Какой вариант верный?");
-                number = scanner.nextInt();
-                if (number > answerOptions[i].length) {
-                    System.out.println("Вы ввели ответ выше диапазона возможных ответов.");
-                } else {
-                    break;
-                }
-            } while (true);
 
+            while (true) {
+                System.out.println("Какой вариант верный?");
+                if (scanner.hasNextInt()) {
+                    number = scanner.nextInt();
+                    if (number > answerOptions[i].length) {
+                        System.out.println("Вы ввели ответ выше диапазона возможных ответов.");
+                    } else {
+                        break;
+                    }
+                } else {
+                    System.out.println("Не верный ввод, введите пожалуйста число");
+                    scanner.next();
+                }
+            }
             //TODO: Проверяем ответ и выводим результат
             // а также увеличиваем счетчики правильных и неправильных ответов
             if (number == correctAnswers[i]) {
@@ -59,7 +64,6 @@ public class TestHomeWork {
                 wrongCount += 1;
             }
             System.out.println("Результат: правильно " + correctCount + ", неправильно " + wrongCount);
-
         }
     }
 }
